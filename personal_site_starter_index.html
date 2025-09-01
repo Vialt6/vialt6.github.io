@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Personal Website</title>
+  <meta name="description" content="Personal website for Your Name: bio, projects, experience, and contact." />
+  <link rel="canonical" href="https://your-domain.example/" />
+  <meta property="og:title" content="Your Name — Personal Website" />
+  <meta property="og:description" content="Bio, projects, experience, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-domain.example/" />
+  <meta property="og:image" content="/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🪄</text></svg>">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0f172a; /* slate-900 */
+      --muted: #475569; /* slate-600 */
+      --card: #f8fafc; /* slate-50 */
+      --accent: #3b82f6; /* blue-500 */
+      --ring: rgba(59,130,246,.4);
+      --border: #e2e8f0; /* slate-200 */
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1220; /* deep navy */
+        --text: #e2e8f0; /* slate-200 */
+        --muted: #94a3b8; /* slate-400 */
+        --card: #0f172a; /* slate-900 */
+        --accent: #60a5fa; /* blue-400 */
+        --ring: rgba(96,165,250,.35);
+        --border: #1f2937; /* gray-800 */
+      }
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1000px; padding: 24px; margin: 0 auto; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 16px; position: sticky; top: 0; backdrop-filter: saturate(180%) blur(8px); background: color-mix(in srgb, var(--bg) 75%, transparent); border-bottom: 1px solid var(--border); z-index: 20; }
+    nav a { text-decoration: none; color: var(--muted); margin-left: 18px; font-weight: 600; }
+    nav a:hover { color: var(--text); }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .2px; }
+    .brand .dot { width: 10px; height: 10px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 0 4px var(--ring); }
+    .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; padding-top: 40px; align-items: center; }
+    @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; box-shadow: 0 10px 20px rgba(0,0,0,.05); }
+    h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.15; margin: 0 0 10px; }
+    h2 { font-size: clamp(20px, 3.2vw, 28px); margin: 26px 0 12px; }
+    p.lead { font-size: 18px; color: var(--muted); margin: 0 0 18px; }
+    .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); padding: 10px 14px; border-radius: 12px; text-decoration: none; font-weight: 600; }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn:focus { outline: 3px solid var(--ring); outline-offset: 2px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .col-6 { grid-column: span 6; } .col-4 { grid-column: span 4; } .col-12 { grid-column: span 12; }
+    @media (max-width: 860px) { .col-6, .col-4 { grid-column: span 12; } }
+    .project {
+      display: grid; gap: 10px;
+    }
+    .project img, .placeholder {
+      width: 100%; aspect-ratio: 16/9; border-radius: 12px; border: 1px solid var(--border); background: repeating-linear-gradient(45deg, #0000 0 10px, color-mix(in srgb, var(--text) 6%, transparent) 10px 20px);
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { font-size: 12px; padding: 6px 8px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+    .section { padding: 36px 0; }
+    .list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+    .row { display: flex; justify-content: space-between; gap: 16px; padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); }
+    .row .meta { color: var(--muted); font-size: 14px; }
+    footer { padding: 36px 0; color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); margin-top: 20px; }
+    .socials { display: flex; gap: 12px; align-items: center; }
+    .theme-toggle { border: 1px solid var(--border); background: var(--card); border-radius: 10px; padding: 8px 10px; cursor: pointer; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
+      <div class="brand"><span class="dot" aria-hidden="true"></span><span>Your Name</span></div>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle theme">🌓</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1>Hi, I'm <span style="white-space:nowrap;">Your Name</span> 👋</h1>
+        <p class="lead">Short tagline about what you do (e.g., "Federated Learning researcher & full‑stack developer"). Keep it concise and memorable.</p>
+        <div class="btns">
+          <a class="btn primary" href="#projects">View projects</a>
+          <a class="btn" href="mailto:you@example.com">Email me</a>
+          <a class="btn" href="cv.pdf" download>Download CV</a>
+        </div>
+      </div>
+      <div class="card">
+        <h2>At a glance</h2>
+        <p>Write 2–3 sentences about yourself, your focus areas, and what you’re looking for (roles, collaborations, freelance, PhD, etc.).</p>
+        <div class="tags" aria-label="Skills">
+          <span class="tag">Python</span>
+          <span class="tag">PyTorch</span>
+          <span class="tag">Federated Learning</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Angular</span>
+          <span class="tag">Spring Boot</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Featured projects</h2>
+      <div class="grid">
+        <article class="project col-6 card">
+          <div class="placeholder" role="img" aria-label="Project cover image placeholder"></div>
+          <div>
+            <h3>Project One</h3>
+            <p class="meta">2025 · Open source</p>
+            <p>One‑liner describing what this does and why it’s cool. Add a clear outcome or metric if possible.</p>
+            <div class="btns">
+              <a class="btn" href="#" target="_blank" rel="noopener">Live demo</a>
+              <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </article>
+        <article class="project col-6 card">
+          <div class="placeholder" role="img" aria-label="Project cover image placeholder"></div>
+          <div>
+            <h3>Project Two</h3>
+            <p class="meta">2024 · Research</p>
+            <p>Brief description. Mention stack, your role, and any publication or press if relevant.</p>
+            <div class="btns">
+              <a class="btn" href="#" target="_blank" rel="noopener">Paper</a>
+              <a class="btn" href="#" target="_blank" rel="noopener">Code</a>
+            </div>
+          </div>
+        </article>
+        <article class="project col-12 card">
+          <div class="placeholder" role="img" aria-label="Project cover image placeholder"></div>
+          <div>
+            <h3>Project Three</h3>
+            <p class="meta">2023 · Personal</p>
+            <p>Another project—ideally with a link visitors can click. Keep each project tight and skimmable.</p>
+            <div class="btns">
+              <a class="btn" href="#" target="_blank" rel="noopener">Read more</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <h2>Experience</h2>
+      <ul class="list" aria-label="Work and education timeline">
+        <li class="row">
+          <div>
+            <strong>Role · Company</strong><div class="meta">City · 2024—Present</div>
+            <div>Brief 1–2 line summary of your impact. Use verbs and results (shipped X, improved Y by Z%).</div>
+          </div>
+          <div class="meta">Full‑time</div>
+        </li>
+        <li class="row">
+          <div>
+            <strong>Degree · University</strong><div class="meta">Location · 2021—2024</div>
+            <div>Thesis on … Coursework in … Honors/awards …</div>
+          </div>
+          <div class="meta">Education</div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About</h2>
+      <p>Write a slightly longer bio (5–7 sentences). Mention what you care about, the problems you like to solve, and the tools you enjoy. Invite people to reach out.</p>
+    </section>
+
+    <section id="contact" class="section card">
+      <h2>Contact</h2>
+      <p>Want to collaborate or just say hi? <a href="mailto:you@example.com">Email me</a> or find me here:</p>
+      <div class="socials">
+        <a href="https://github.com/yourhandle" target="_blank" rel="noopener" aria-label="GitHub">🐙 GitHub</a>
+        <a href="https://www.linkedin.com/in/yourhandle" target="_blank" rel="noopener" aria-label="LinkedIn">💼 LinkedIn</a>
+        <a href="https://x.com/yourhandle" target="_blank" rel="noopener" aria-label="X/Twitter">𝕏</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <span>© <span id="year"></span> Your Name</span>
+        <a href="#top" class="btn" style="padding:6px 10px;">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle with localStorage
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const stored = localStorage.getItem('theme');
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+
+    function applyTheme(mode) {
+      if (mode === 'dark') {
+        root.style.colorScheme = 'dark';
+        document.documentElement.classList.add('dark');
+        toggle.setAttribute('aria-pressed', 'true');
+      } else {
+        root.style.colorScheme = 'light';
+        document.documentElement.classList.remove('dark');
+        toggle.setAttribute('aria-pressed', 'false');
+      }
+    }
+    const initial = stored || (prefersDark.matches ? 'dark' : 'light');
+    applyTheme(initial);
+
+    toggle.addEventListener('click', () => {
+      const current = root.style.colorScheme || (prefersDark.matches ? 'dark' : 'light');
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Your Name",
+    "url": "https://your-domain.example/",
+    "email": "mailto:you@example.com",
+    "jobTitle": "Your Role",
+    "sameAs": [
+      "https://github.com/yourhandle",
+      "https://www.linkedin.com/in/yourhandle",
+      "https://x.com/yourhandle"
+    ]
+  }
+  </script>
+</body>
+</html>
